@@ -1,0 +1,3430 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[    123726,       3422]
+NotebookOptionsPosition[    115210,       3268]
+NotebookOutlinePosition[    115640,       3285]
+CellTagsIndexPosition[    115597,       3282]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Definitions of D functions and Coordinate transformation from {U,V} to \
+{\[Chi], \[Chi]b}\
+\>", "Section",
+ CellChangeTimes->{{3.9950020874544106`*^9, 
+  3.99500210801186*^9}},ExpressionUUID->"85995b83-2669-cd48-a317-\
+70da77a61397"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$Assumptions", "=", 
+   RowBox[{
+    RowBox[{"Element", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Chi]", ",", "\[Chi]b"}], "}"}], ",", "Reals"}], "]"}], "&&", 
+    RowBox[{"0", "<", "\[Chi]", "<", "1"}], "&&", 
+    RowBox[{"0", "<", "\[Chi]b", "<", "1"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"U", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{"\[Chi]", " ", "\[Chi]b"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"V", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "\[Chi]"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "\[Chi]b"}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"dU", "[", "f_", "]"}], ":=", 
+   RowBox[{"Simplify", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Chi]", "-", "1"}], ")"}], " ", 
+        RowBox[{"D", "[", 
+         RowBox[{"f", ",", "\[Chi]"}], "]"}]}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]b"}], ")"}], " ", 
+        RowBox[{"D", "[", 
+         RowBox[{"f", ",", "\[Chi]b"}], "]"}]}]}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"dV", "[", "f_", "]"}], ":=", 
+   RowBox[{"Simplify", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "\[Chi]"}], " ", 
+        RowBox[{"D", "[", 
+         RowBox[{"f", ",", "\[Chi]"}], "]"}]}], "+", 
+       RowBox[{"\[Chi]b", " ", 
+        RowBox[{"D", "[", 
+         RowBox[{"f", ",", "\[Chi]b"}], "]"}]}]}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalPhi]", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"(", 
+      RowBox[{"x", "-", "xb"}], ")"}]], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Log", "[", 
+        RowBox[{"x", " ", "xb"}], "]"}], 
+       RowBox[{"Log", "[", 
+        FractionBox[
+         RowBox[{"1", "-", "x"}], 
+         RowBox[{"1", "-", "xb"}]], "]"}]}], "+", " ", 
+      RowBox[{"2", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"PolyLog", "[", 
+          RowBox[{"2", ",", "x"}], "]"}], "-", 
+         RowBox[{"PolyLog", "[", 
+          RowBox[{"2", ",", "xb"}], "]"}]}], ")"}]}]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D1111", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{"\[CapitalPhi]", "[", 
+    RowBox[{"x", ",", "xb"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D2211", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{"-", 
+    RowBox[{"dU", "[", 
+     RowBox[{"D1111", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D2222", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"D2211", "[", 
+       RowBox[{"x", ",", "xb"}], "]"}], "+", 
+      RowBox[{
+       RowBox[{"U", "[", 
+        RowBox[{"x", ",", "xb"}], "]"}], 
+       RowBox[{"dU", "[", 
+        RowBox[{"D2211", "[", 
+         RowBox[{"x", ",", "xb"}], "]"}], "]"}]}]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D3322", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{"-", 
+    RowBox[{"dU", "[", 
+     RowBox[{"D2222", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D3333", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{"-", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"D3322", "[", 
+       RowBox[{"x", ",", "xb"}], "]"}], "+", 
+      RowBox[{
+       RowBox[{"U", "[", 
+        RowBox[{"x", ",", "xb"}], "]"}], 
+       RowBox[{"dU", "[", 
+        RowBox[{"D3322", "[", 
+         RowBox[{"x", ",", "xb"}], "]"}], "]"}]}]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D3232", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"2", " ", 
+     RowBox[{"D2222", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"U", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}], 
+     RowBox[{"dU", "[", 
+      RowBox[{"D2222", "[", 
+       RowBox[{"x", ",", "xb"}], "]"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"V", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}], 
+     RowBox[{"dV", "[", 
+      RowBox[{"D2222", "[", 
+       RowBox[{"x", ",", "xb"}], "]"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D3223", "[", 
+    RowBox[{"x_", ",", "xb_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"V", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}]}], 
+    RowBox[{"dV", "[", 
+     RowBox[{"D2222", "[", 
+      RowBox[{"x", ",", "xb"}], "]"}], "]"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9949223101294746`*^9, 3.99492236463871*^9}, {
+  3.994922395725668*^9, 3.994922481431795*^9}, {3.9949228045407486`*^9, 
+  3.9949228603770256`*^9}, {3.9949233044838867`*^9, 3.9949234144041634`*^9}, {
+  3.994923474707718*^9, 3.994923562789875*^9}, {3.994923629572874*^9, 
+  3.994923709628456*^9}, {3.994923749441782*^9, 3.994923751692684*^9}, {
+  3.9949238191362476`*^9, 3.9949239310658493`*^9}, {3.9949325708379993`*^9, 
+  3.9949325716991615`*^9}, {3.9950010934751835`*^9, 3.995001224925249*^9}, {
+  3.995002161359171*^9, 3.995002163202265*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"99a78c1c-e535-ce40-b585-35542792a939"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"dU", "[", 
+  RowBox[{"U", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"dV", "[", 
+  RowBox[{"V", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"dU", "[", 
+  RowBox[{"V", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"dV", "[", 
+  RowBox[{"U", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9949233606957455`*^9, 3.9949233618008404`*^9}, {
+  3.994923417160042*^9, 3.994923465024887*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"e5d4e6d5-098b-7c42-94b1-71a21c519a82"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{{3.9949234215583496`*^9, 3.994923465308836*^9}, 
+   3.9949239343185825`*^9, 3.9949261469185047`*^9, 3.994929861124689*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"8b5b7a51-2a69-354c-8941-86e312121aab"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{{3.9949234215583496`*^9, 3.994923465308836*^9}, 
+   3.9949239343185825`*^9, 3.9949261469185047`*^9, 3.994929861127966*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"67717926-8ed3-e64b-b598-ea5a396a3c07"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.9949234215583496`*^9, 3.994923465308836*^9}, 
+   3.9949239343185825`*^9, 3.9949261469185047`*^9, 3.994929861143364*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"49ac5bc9-0379-5e40-b940-ca1e1d524f03"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.9949234215583496`*^9, 3.994923465308836*^9}, 
+   3.9949239343185825`*^9, 3.9949261469185047`*^9, 3.994929861151146*^9},
+ CellLabel->"Out[16]=",ExpressionUUID->"867820f8-3432-f54f-a56f-ca2bd3e12021"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Free Theory Solution", "Section",
+ CellChangeTimes->{{3.995002176457693*^9, 
+  3.9950021810640507`*^9}},ExpressionUUID->"539ed638-fa34-b540-b36b-\
+b5c3b5be3520"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Gdisc", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_", ",", "\[Zeta]_", ",", "\[Zeta]b_"}], 
+    "]"}], ":=", 
+   RowBox[{"16", 
+    FractionBox[
+     SuperscriptBox["n", "2"], 
+     SuperscriptBox["\[Pi]", "4"]], 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"U", "[", 
+         RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "2"], 
+       FractionBox["1", 
+        RowBox[{"\[Zeta]", " ", "\[Zeta]b"}]]}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         FractionBox["1", "\[Zeta]"]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         FractionBox["1", "\[Zeta]b"]}], ")"}], 
+       FractionBox[
+        SuperscriptBox[
+         RowBox[{"U", "[", 
+          RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "2"], 
+        SuperscriptBox[
+         RowBox[{"V", "[", 
+          RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "2"]]}]}], ")"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.995002186410635*^9, 3.99500218841123*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"15b21264-d147-aa45-8d35-ae173aa4b574"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Gdisc", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], "]"}],
+   "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.995002191645485*^9, 3.9950022063884983`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"279d4de9-3c32-414f-91d4-84e73a259a5c"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"16", " ", 
+   SuperscriptBox["n", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["\[Chi]", "2"], " ", 
+       SuperscriptBox["\[Chi]b", "2"]}], 
+      RowBox[{"\[Zeta]", " ", "\[Zeta]b"}]], "+", 
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Zeta]"}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Zeta]b"}], ")"}], " ", 
+       SuperscriptBox["\[Chi]", "2"], " ", 
+       SuperscriptBox["\[Chi]b", "2"]}], 
+      RowBox[{"\[Zeta]", " ", "\[Zeta]b", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], "2"]}]]}], ")"}]}], 
+  SuperscriptBox["\[Pi]", "4"]]], "Output",
+ CellChangeTimes->{{3.9950022008887024`*^9, 3.995002206931217*^9}, 
+   3.995016989892502*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"0746d826-ebe3-4744-af9e-e2bbd97251da"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Tree-level Solution", "Section",
+ CellChangeTimes->{{3.9950022225756474`*^9, 
+  3.995002226313156*^9}},ExpressionUUID->"78affa55-d702-9b4f-9dde-\
+c068558cf874"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Q0", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"U", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "-", "1", "-", 
+       RowBox[{"V", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], ")"}], 
+     RowBox[{"D3333", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "-", 
+    RowBox[{
+     RowBox[{"U", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], 
+     RowBox[{"D3322", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "+", 
+    RowBox[{"D2222", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Q1", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"U", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "-", 
+       RowBox[{"V", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], ")"}], 
+     RowBox[{"D3333", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "-", 
+    RowBox[{"D3232", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+    RowBox[{"D2222", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Q2", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "-", 
+       RowBox[{"U", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+       RowBox[{"V", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], ")"}], 
+     RowBox[{"D3333", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "-", 
+    RowBox[{"D3223", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+    RowBox[{"D2222", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Q3", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"U", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "2"], 
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], 
+    RowBox[{"D3333", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"G1", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_", ",", "\[Zeta]_", ",", "\[Zeta]b_"}], 
+    "]"}], ":=", 
+   RowBox[{
+    RowBox[{"-", "96"}], 
+    FractionBox["n", 
+     SuperscriptBox["\[Pi]", "4"]], 
+    SuperscriptBox[
+     RowBox[{"U", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "2"], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Q0", "[", 
+       RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"\[Zeta]", " ", "\[Zeta]b"}]], 
+       RowBox[{"Q1", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "+", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Zeta]"}], ")"}], "\[Zeta]"], 
+       FractionBox[
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Zeta]b"}], ")"}], "\[Zeta]b"], 
+       RowBox[{"Q2", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"G2", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_", ",", "\[Zeta]_", ",", "\[Zeta]b_"}], 
+    "]"}], ":=", 
+   RowBox[{
+    RowBox[{"-", "72"}], 
+    FractionBox["n", 
+     SuperscriptBox["\[Pi]", "4"]], 
+    SuperscriptBox[
+     RowBox[{"U", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "2"], 
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{
+      FractionBox["1", "\[Zeta]"], "-", 
+      FractionBox["1", "\[Zeta]b"]}], ")"}], 
+    RowBox[{"D3333", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Gtree", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_", ",", "\[Zeta]_", ",", "\[Zeta]b_"}], 
+    "]"}], ":=", 
+   RowBox[{
+    RowBox[{"G1", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+     "]"}], "+", 
+    RowBox[{"G2", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+     "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GtillTree", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_", ",", "\[Zeta]_", ",", "\[Zeta]b_"}], 
+    "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Gdisc", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+     "]"}], "+", 
+    RowBox[{"Gtree", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+     "]"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9949239683332977`*^9, 3.9949240200994835`*^9}, {
+  3.9949242449999447`*^9, 3.994924356431637*^9}, {3.994924555449005*^9, 
+  3.9949246357869816`*^9}, {3.9949253939728756`*^9, 3.994925411035864*^9}, {
+  3.995002394471386*^9, 3.9950023952042465`*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"1bf99b8e-d2a7-6b42-aff6-97fb5288209d"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Ward Identity Reduction", "Section",
+ CellChangeTimes->{{3.995002321334305*^9, 
+  3.995002325747154*^9}},ExpressionUUID->"4f8440ec-5025-3045-ba63-\
+bc7866ad61e7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Op", "[", 
+    RowBox[{"x_", ",", "y_", ",", "f_"}], "]"}], ":=", 
+   RowBox[{"f", "-", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"1", "/", "x"}], "-", 
+       RowBox[{"1", "/", "y"}]}], ")"}], 
+     SuperscriptBox["x", "2"], 
+     RowBox[{"D", "[", 
+      RowBox[{"f", ",", "x"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Op", "[", 
+  RowBox[{"\[Chi]", ",", "\[Zeta]", ",", 
+   RowBox[{"Op", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Zeta]b", ",", 
+     RowBox[{"f", "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9949262025382404`*^9, 3.994926288077177*^9}, {
+  3.9949268246276035`*^9, 3.9949268259216385`*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"6202417e-7f2a-6b45-a885-b5cc936d36c1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "-", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "\[Zeta]b"]}], "+", 
+     FractionBox["1", "\[Chi]b"]}], ")"}], " ", 
+   SuperscriptBox["\[Chi]b", "2"], " ", 
+   RowBox[{
+    SuperscriptBox["f", 
+     TagBox[
+      RowBox[{"(", 
+       RowBox[{"0", ",", "1"}], ")"}],
+      Derivative],
+     MultilineFunction->None], "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "-", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "\[Zeta]"]}], "+", 
+     FractionBox["1", "\[Chi]"]}], ")"}], " ", 
+   SuperscriptBox["\[Chi]", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["f", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "-", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox["1", "\[Zeta]b"]}], "+", 
+        FractionBox["1", "\[Chi]b"]}], ")"}], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{
+       SuperscriptBox["f", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"1", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.994926288754265*^9, 3.994926826717882*^9, 
+  3.9949298861115093`*^9, 3.9950023555497*^9, 3.9950170026849174`*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"b3c24bc9-266c-0642-93e7-e0e95950abe5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Op", "[", 
+    RowBox[{"\[Chi]", ",", "\[Zeta]", ",", 
+     RowBox[{"Op", "[", 
+      RowBox[{"\[Chi]b", ",", "\[Zeta]b", ",", 
+       RowBox[{"Gdisc", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Chi]", ",", "\[Chi]b"}], 
+        "]"}]}], "]"}]}], "]"}], "-", 
+   RowBox[{"Gdisc", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+    "]"}]}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.9950024992704983`*^9, 3.995002512802305*^9}, {
+  3.9950025450713997`*^9, 3.995002558938711*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"19612529-de6c-4644-8111-31fa683b51eb"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.9950025021809826`*^9, 3.995002513248638*^9}, 
+   3.995002559456009*^9, 3.9950170048984413`*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"bed2cf25-7d8a-d14d-93e9-f58a3c96f78b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Op", "[", 
+    RowBox[{"\[Chi]", ",", "\[Zeta]", ",", 
+     RowBox[{"Op", "[", 
+      RowBox[{"\[Chi]b", ",", "\[Zeta]b", ",", 
+       RowBox[{"Gtree", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Chi]", ",", "\[Chi]b"}], 
+        "]"}]}], "]"}]}], "]"}], "-", 
+   RowBox[{"Gtree", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+    "]"}]}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.9950025754399567`*^9, 3.995002578948107*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"6e28900f-16dd-ec40-9ea5-397553166584"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9950025933929615`*^9, 3.995017024737604*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"27c1b947-060a-9040-ac50-62531096cd0a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Op", "[", 
+    RowBox[{"\[Chi]", ",", "\[Zeta]", ",", 
+     RowBox[{"Op", "[", 
+      RowBox[{"\[Chi]b", ",", "\[Zeta]b", ",", 
+       RowBox[{"GtillTree", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Chi]", ",", "\[Chi]b"}], 
+        "]"}]}], "]"}]}], "]"}], "-", 
+   RowBox[{"GtillTree", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+    "]"}]}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.9949322268645496`*^9, 3.994932252505911*^9}, {
+  3.9949323523146687`*^9, 3.9949323902342415`*^9}, {3.995002400412836*^9, 
+  3.9950024051279507`*^9}, {3.9950025639034634`*^9, 3.9950025680182056`*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"3a0a128a-413f-764a-a6ea-882afc7d7168"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9949322536874313`*^9, 3.9949324078754272`*^9, 
+  3.9949325968454094`*^9, 3.995002373272415*^9, 3.9950024203321323`*^9, 
+  3.995017039624302*^9},
+ CellLabel->"Out[28]=",ExpressionUUID->"a02f31e1-97b3-c84d-a3cf-2a62dd4c10a8"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", "[", 
+    RowBox[{"i_", ",", "j_", ",", "f_"}], "]"}], ":=", 
+   RowBox[{"Coefficient", "[", 
+    RowBox[{
+     RowBox[{"Coefficient", "[", 
+      RowBox[{"f", ",", "\[Alpha]", ",", "i"}], "]"}], ",", "\[Alpha]b", ",", 
+     "j"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.994932599452572*^9, 3.994932620571968*^9}, {
+   3.9949327072465305`*^9, 3.994932775412058*^9}, 3.994932862089033*^9, {
+   3.9949332489889984`*^9, 3.9949332541737823`*^9}, {3.995001317335148*^9, 
+   3.9950013219392357`*^9}, {3.99500152270195*^9, 3.9950015654738083`*^9}, {
+   3.995001887744274*^9, 3.9950019006893177`*^9}, 3.995002393068331*^9, 
+   3.995002432120388*^9, 3.995002701321209*^9, {3.9950040596327724`*^9, 
+   3.9950040647178555`*^9}, {3.9950119520062103`*^9, 
+   3.9950119665013237`*^9}, {3.995012063279476*^9, 3.995012063568098*^9}},
+ CellLabel->"In[29]:=",ExpressionUUID->"9bfe2677-af94-3741-8752-381c80f7a316"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"r", "[", 
+  RowBox[{"1", ",", "1", ",", 
+   RowBox[{"Gdisc", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", 
+     FractionBox["1", "\[Alpha]"], ",", 
+     FractionBox["1", "\[Alpha]b"]}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.995003445330183*^9, 3.995003469790184*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"a0fc7e4e-c32d-a34f-8040-0be9113fc242"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"16", " ", 
+   SuperscriptBox["n", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["\[Chi]", "2"], " ", 
+       SuperscriptBox["\[Chi]b", "2"]}], 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]"}], ")"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]b"}], ")"}], "2"]}]]}], ")"}]}], 
+  SuperscriptBox["\[Pi]", "4"]]], "Output",
+ CellChangeTimes->{{3.9950034610294437`*^9, 3.9950034703517113`*^9}, 
+   3.995017040181692*^9},
+ CellLabel->"Out[30]=",ExpressionUUID->"fe27ed4d-8a70-4a40-8c4a-936479f63592"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"fdiscCand", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{"Gdisc", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Chi]", ",", "\[Chi]b"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Op", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Zeta]b", ",", 
+     RowBox[{"Op", "[", 
+      RowBox[{"\[Chi]", ",", "\[Zeta]", ",", 
+       RowBox[{"fdiscCand", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "]"}]}], "]"}], "-", 
+   RowBox[{"Gdisc", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+    "]"}]}], "//", "Simplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"r", "[", 
+   RowBox[{"1", ",", "1", ",", 
+    RowBox[{"Gdisc", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b", ",", 
+      FractionBox["1", "\[Alpha]"], ",", 
+      FractionBox["1", "\[Alpha]b"]}], "]"}]}], "]"}], "//", 
+  "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"fdiscCand", "[", 
+       RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], ",", "\[Chi]"}], "]"}], ",",
+     "\[Chi]b"}], "]"}], "//", "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["\[Chi]", "2"], 
+    SuperscriptBox["\[Chi]b", "2"], "%"}], "-", "%%"}], "//", 
+  "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.9950030712150097`*^9, 3.995003141032381*^9}, {
+  3.995003417270094*^9, 3.9950034389781704`*^9}, {3.9950037014916973`*^9, 
+  3.995003758884514*^9}, {3.995003961862156*^9, 3.9950039990794888`*^9}, {
+  3.9950040368121433`*^9, 3.9950041443727837`*^9}, {3.9950041786516304`*^9, 
+  3.9950042275429916`*^9}, {3.995004259458748*^9, 3.995004289978657*^9}, {
+  3.995005705051985*^9, 3.9950057705873356`*^9}, {3.9950058130336113`*^9, 
+  3.995005828008852*^9}, {3.9950065012098846`*^9, 3.995006508447151*^9}, {
+  3.9950066052824535`*^9, 3.9950066108225174`*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"193deffe-7e95-a541-9567-3c33a5a8edc3"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{
+  3.99500307943375*^9, 3.9950031486707993`*^9, 3.995003483852762*^9, {
+   3.9950037028134804`*^9, 3.995003759882614*^9}, {3.9950039891414833`*^9, 
+   3.995004000051977*^9}, 3.9950040450929737`*^9, 3.9950041523606663`*^9, {
+   3.995004251466364*^9, 3.9950042912702713`*^9}, {3.995005767418009*^9, 
+   3.9950057712473736`*^9}, {3.9950058166090336`*^9, 3.9950058285967236`*^9}, 
+   3.9950065647701855`*^9, 3.995006611601906*^9, 3.9950170403981094`*^9},
+ CellLabel->"Out[32]=",ExpressionUUID->"79f260bb-f9f0-4b42-bb6f-b4ebcb0832bf"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"16", " ", 
+   SuperscriptBox["n", "2"], " ", 
+   SuperscriptBox["\[Chi]", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     FractionBox["1", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], "2"]}]]}], ")"}], " ", 
+   SuperscriptBox["\[Chi]b", "2"]}], 
+  SuperscriptBox["\[Pi]", "4"]]], "Output",
+ CellChangeTimes->{
+  3.99500307943375*^9, 3.9950031486707993`*^9, 3.995003483852762*^9, {
+   3.9950037028134804`*^9, 3.995003759882614*^9}, {3.9950039891414833`*^9, 
+   3.995004000051977*^9}, 3.9950040450929737`*^9, 3.9950041523606663`*^9, {
+   3.995004251466364*^9, 3.9950042912702713`*^9}, {3.995005767418009*^9, 
+   3.9950057712473736`*^9}, {3.9950058166090336`*^9, 3.9950058285967236`*^9}, 
+   3.9950065647701855`*^9, 3.995006611601906*^9, 3.995017040404419*^9},
+ CellLabel->"Out[33]=",ExpressionUUID->"de0779fa-7713-cc48-a58b-df332857f97a"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"16", " ", 
+   SuperscriptBox["n", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     FractionBox["1", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], "2"], " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], "2"]}]]}], ")"}]}], 
+  SuperscriptBox["\[Pi]", "4"]]], "Output",
+ CellChangeTimes->{
+  3.99500307943375*^9, 3.9950031486707993`*^9, 3.995003483852762*^9, {
+   3.9950037028134804`*^9, 3.995003759882614*^9}, {3.9950039891414833`*^9, 
+   3.995004000051977*^9}, 3.9950040450929737`*^9, 3.9950041523606663`*^9, {
+   3.995004251466364*^9, 3.9950042912702713`*^9}, {3.995005767418009*^9, 
+   3.9950057712473736`*^9}, {3.9950058166090336`*^9, 3.9950058285967236`*^9}, 
+   3.9950065647701855`*^9, 3.995006611601906*^9, 3.9950170405184345`*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"16c76cc0-cb9f-7343-b160-fe49bce307a5"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{
+  3.99500307943375*^9, 3.9950031486707993`*^9, 3.995003483852762*^9, {
+   3.9950037028134804`*^9, 3.995003759882614*^9}, {3.9950039891414833`*^9, 
+   3.995004000051977*^9}, 3.9950040450929737`*^9, 3.9950041523606663`*^9, {
+   3.995004251466364*^9, 3.9950042912702713`*^9}, {3.995005767418009*^9, 
+   3.9950057712473736`*^9}, {3.9950058166090336`*^9, 3.9950058285967236`*^9}, 
+   3.9950065647701855`*^9, 3.995006611601906*^9, 3.995017040523489*^9},
+ CellLabel->"Out[35]=",ExpressionUUID->"4f5ff05b-d34f-8942-9fe1-bed1bbeefe9f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ftreeCand", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{"Gtree", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Chi]", ",", "\[Chi]b"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Op", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Zeta]b", ",", 
+     RowBox[{"Op", "[", 
+      RowBox[{"\[Chi]", ",", "\[Zeta]", ",", 
+       RowBox[{"ftreeCand", "[", 
+        RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}]}], "]"}]}], "]"}], "-", 
+   RowBox[{"Gtree", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b", ",", "\[Zeta]", ",", "\[Zeta]b"}], 
+    "]"}]}], "//", "Simplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"r", "[", 
+   RowBox[{"1", ",", "1", ",", 
+    RowBox[{"Gtree", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b", ",", 
+      FractionBox["1", "\[Alpha]"], ",", 
+      FractionBox["1", "\[Alpha]b"]}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"ftreeCand", "[", 
+       RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], ",", "\[Chi]"}], "]"}], ",",
+     "\[Chi]b"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["\[Chi]", "2"], 
+    SuperscriptBox["\[Chi]b", "2"], "%"}], "-", "%%"}], "//", 
+  "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.9949330070934906`*^9, 3.9949330303280334`*^9}, {
+   3.994933072322302*^9, 3.994933142614176*^9}, 3.9949332365988846`*^9, {
+   3.994933268858244*^9, 3.994933332030033*^9}, {3.9949333951953697`*^9, 
+   3.9949335221546955`*^9}, {3.995001574144186*^9, 3.9950015852679768`*^9}, {
+   3.9950016373051186`*^9, 3.995001647585144*^9}, {3.9950017230286465`*^9, 
+   3.995001727126768*^9}, {3.9950018523293896`*^9, 3.9950018670167255`*^9}, {
+   3.9950019607282486`*^9, 3.995001961295038*^9}, {3.9950060933675365`*^9, 
+   3.995006135960888*^9}, {3.9950066349018135`*^9, 3.9950066433851643`*^9}, {
+   3.9950070195839653`*^9, 3.9950070257114735`*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"73c9d049-6195-6a49-9b0b-40e612e3b46a"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.9949330173780365`*^9, 3.994933031455349*^9}, {
+   3.9949330764036026`*^9, 3.994933085491459*^9}, {3.99493328290942*^9, 
+   3.99493333277063*^9}, 3.994933402675234*^9, 3.9949334385733986`*^9, 
+   3.9949334982210846`*^9, 3.994933534710909*^9, 3.995001598245529*^9, {
+   3.99500172024481*^9, 3.995001737771641*^9}, {3.995001861563671*^9, 
+   3.995001874207382*^9}, 3.9950019362275925`*^9, 3.9950061445970936`*^9, 
+   3.995006656751484*^9, 3.99500704083696*^9, 3.9950170541961536`*^9},
+ CellLabel->"Out[37]=",ExpressionUUID->"4dc2d6f3-9c64-ce4b-bea5-438f7771e0fe"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.9949330173780365`*^9, 3.994933031455349*^9}, {
+   3.9949330764036026`*^9, 3.994933085491459*^9}, {3.99493328290942*^9, 
+   3.99493333277063*^9}, 3.994933402675234*^9, 3.9949334385733986`*^9, 
+   3.9949334982210846`*^9, 3.994933534710909*^9, 3.995001598245529*^9, {
+   3.99500172024481*^9, 3.995001737771641*^9}, {3.995001861563671*^9, 
+   3.995001874207382*^9}, 3.9950019362275925`*^9, 3.9950061445970936`*^9, 
+   3.995006656751484*^9, 3.99500704083696*^9, 3.9950170648356247`*^9},
+ CellLabel->"Out[40]=",ExpressionUUID->"e729597d-c51e-de40-8015-c94e621230cd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ftreeCand", "[", 
+   RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.9950129162575207`*^9, 3.9950129362889977`*^9}, {
+  3.9950131185639153`*^9, 3.995013170530657*^9}, {3.995013206559355*^9, 
+  3.9950132271999493`*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"791e1dda-db65-7e44-8d46-34d14904ea5c"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{
+    SuperscriptBox["\[Pi]", "4"], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]}]], 
+  RowBox[{"48", " ", "n", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "2"}], " ", 
+      SuperscriptBox["\[Chi]", "5"]}], "+", 
+     SuperscriptBox["\[Chi]", "6"], "-", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"16", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"35", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"10", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"35", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     RowBox[{"16", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     SuperscriptBox["\[Chi]b", "6"], "+", 
+     RowBox[{"2", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"]}], "+", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"16", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"12", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"4", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"96", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"264", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"218", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"96", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"64", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"208", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"224", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"192", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"310", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"104", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"12", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"104", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"156", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"64", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"8", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}]}], "-", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"12", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"96", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"192", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"104", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"96", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"64", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"310", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"156", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"16", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"264", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"208", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"104", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"64", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"12", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"218", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"224", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"8", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"4", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"90", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"6", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"96", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"100", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"46", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"54", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"4", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"40", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"100", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"208", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"60", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"90", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"46", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"60", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"56", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"54", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"8", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "+", 
+     RowBox[{"6", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"4", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"132", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"78", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"116", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"24", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"132", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"116", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"24", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"78", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"2", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "6"], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"36", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"12", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b", " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"72", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"168", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"36", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"24", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"360", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"36", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"168", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"72", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "4"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"12", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "+", 
+     RowBox[{"36", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"], " ", 
+      RowBox[{"Log", "[", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]"}], 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Chi]b"}]], "]"}], " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}]}], "-", 
+     RowBox[{"24", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], " ", "\[Chi]", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], " ", "\[Chi]b", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "2"}], "+", "\[Chi]b"}], ")"}], " ", 
+           SuperscriptBox["\[Chi]b", "2"]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[Chi]", "3"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "1"}], "+", 
+           RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}], "+", 
+        RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{"6", "-", 
+           RowBox[{"9", " ", "\[Chi]b"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["\[Chi]b", "2"]}]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[Chi]", "2"], " ", 
+         RowBox[{"(", 
+          RowBox[{"2", "-", 
+           RowBox[{"9", " ", "\[Chi]b"}], "+", 
+           RowBox[{"6", " ", 
+            SuperscriptBox["\[Chi]b", "2"]}]}], ")"}]}]}], ")"}], " ", 
+      RowBox[{"PolyLog", "[", 
+       RowBox[{"2", ",", "\[Chi]"}], "]"}]}], "+", 
+     RowBox[{"24", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], " ", "\[Chi]", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], " ", "\[Chi]b", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "2"}], "+", "\[Chi]b"}], ")"}], " ", 
+           SuperscriptBox["\[Chi]b", "2"]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[Chi]", "3"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "1"}], "+", 
+           RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}], "+", 
+        RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{"6", "-", 
+           RowBox[{"9", " ", "\[Chi]b"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["\[Chi]b", "2"]}]}], ")"}]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[Chi]", "2"], " ", 
+         RowBox[{"(", 
+          RowBox[{"2", "-", 
+           RowBox[{"9", " ", "\[Chi]b"}], "+", 
+           RowBox[{"6", " ", 
+            SuperscriptBox["\[Chi]b", "2"]}]}], ")"}]}]}], ")"}], " ", 
+      RowBox[{"PolyLog", "[", 
+       RowBox[{"2", ",", "\[Chi]b"}], "]"}]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{{3.9950129180975513`*^9, 3.9950129371751003`*^9}, {
+   3.9950131672841377`*^9, 3.995013171758909*^9}, {3.9950132088211575`*^9, 
+   3.995013228155155*^9}, 3.9950170659013805`*^9},
+ CellLabel->"Out[41]=",ExpressionUUID->"2aa743d2-940e-884a-a115-fea361e25361"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Constructing Transcendental Basis", "Section",
+ CellChangeTimes->{{3.995013899407686*^9, 
+  3.995013908346779*^9}},ExpressionUUID->"2216a499-0891-cd49-829e-\
+b77a540627a7"],
+
+Cell["\<\
+Weight-one basis:
+LChiP=Log[\[Chi] \[Chi]b] -----even-parity
+LChiM=Log[\[Chi]/\[Chi]b]  -----odd-parity
+LOneP=Log[(\[Chi]-1) (\[Chi]b-1)]  ------even-parity
+LOneM=Log[(\[Chi]-1)/(\[Chi]b-1)]  ------odd-parity
+
+Weight-two dilogarithm basis:
+Li2P=PolyLog[2,\[Chi]]+PolyLog[2,\[Chi]b] ----even-parity
+Li2M=PolyLog[2,\[Chi]]-PolyLog[2,\[Chi]b] -----odd-parity\
+\>", "Text",
+ CellChangeTimes->{{3.995020822507349*^9, 
+  3.995020919824213*^9}},ExpressionUUID->"4d66b46d-2186-024a-8275-\
+d4af72202f03"],
+
+Cell[CellGroupData[{
+
+Cell["Code by GPT", "Subsection",
+ CellChangeTimes->{{3.995017066162676*^9, 
+  3.995017068470068*^9}},ExpressionUUID->"9e767ebc-c289-af40-b04e-\
+d64ecf454208"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"expr", "=", 
+   RowBox[{"Simplify", "[", 
+    RowBox[{"ftreeCand", "[", 
+     RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"norm", "=", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{
+      SuperscriptBox["\[Pi]", "4"], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]}]], "48", " ", "n", " ",
+     "\[Chi]", " ", "\[Chi]b"}]}], " ", ";"}], "\n", 
+ RowBox[{
+  RowBox[{"core", "=", 
+   RowBox[{"Cancel", "[", 
+    RowBox[{"expr", "/", "norm"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{
+   "LChiP", ",", "LChiM", ",", "LOneP", ",", "LOneM", ",", "Li2P", ",", 
+    "Li2M"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"toBasis", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b"}], "]"}], "->", "LChiP"}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{"\[Chi]", "/", "\[Chi]b"}], "]"}], "->", "LChiM"}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Chi]", "-", "1"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"\[Chi]b", "-", "1"}], ")"}]}], "]"}], "->", "LOneP"}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]b"}], ")"}]}], "]"}], "->", "LOneP"}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"\[Chi]", "-", "1"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"\[Chi]b", "-", "1"}], ")"}]}], "]"}], "->", "LOneM"}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Chi]b"}], ")"}]}], "]"}], "->", "LOneM"}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", "\[Chi]", "]"}], "->", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"LChiP", "+", "LChiM"}], ")"}], "/", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", "\[Chi]b", "]"}], "->", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"LChiP", "-", "LChiM"}], ")"}], "/", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]"}], "]"}], "->", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"LOneP", "+", "LOneM"}], ")"}], "/", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"Log", "[", 
+       RowBox[{"1", "-", "\[Chi]b"}], "]"}], "->", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"LOneP", "-", "LOneM"}], ")"}], "/", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"PolyLog", "[", 
+       RowBox[{"2", ",", "\[Chi]"}], "]"}], "->", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Li2P", "+", "Li2M"}], ")"}], "/", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"PolyLog", "[", 
+       RowBox[{"2", ",", "\[Chi]b"}], "]"}], "->", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Li2P", "-", "Li2M"}], ")"}], "/", "2"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"Expand", "[", 
+    RowBox[{"core", "/.", " ", "toBasis"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight0Basis", "=", 
+   RowBox[{"{", "1", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"weight1Basis", "=", 
+   RowBox[{"{", 
+    RowBox[{"LChiP", ",", "LChiM", ",", "LOneP", ",", "LOneM"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight2LogBasis", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["LChiP", "2"], ",", 
+     RowBox[{"LChiP", " ", "LChiM"}], ",", 
+     RowBox[{"LChiP", " ", "LOneP"}], ",", 
+     RowBox[{"LChiP", " ", "LOneM"}], ",", 
+     SuperscriptBox["LChiM", "2"], ",", 
+     RowBox[{"LChiM", " ", "LOneP"}], ",", 
+     RowBox[{"LChiM", " ", "LOneM"}], ",", 
+     SuperscriptBox["LOneP", "2"], ",", 
+     RowBox[{"LOneP", " ", "LOneM"}], ",", 
+     SuperscriptBox["LOneM", "2"]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight2PolyLogBasis", "=", 
+   RowBox[{"{", 
+    RowBox[{"Li2P", ",", "Li2M"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight2Basis", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"weight2LogBasis", ",", "weight2PolyLogBasis"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"basisByWeight", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"0", "->", "weight0Basis"}], ",", 
+     RowBox[{"1", "->", "weight1Basis"}], ",", 
+     RowBox[{"2", "->", "weight2Basis"}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"fullBasis", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"weight0Basis", ",", "weight1Basis", ",", "weight2Basis"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"basisVariables", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "LChiP", ",", "LChiM", ",", "LOneP", ",", "LOneM", ",", "Li2P", ",", 
+     "Li2M"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"basisWeights", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1", ",", "1", ",", "2", ",", "2"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"coefficientRules", "=", 
+   RowBox[{"CoefficientRules", "[", 
+    RowBox[{"poly", ",", "basisVariables"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"trWeight", "[", "r_Rule", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"First", "[", "r", "]"}], ".", "basisWeights"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"monomialFromExponents", "[", "exponents_List", "]"}], ":=", 
+   RowBox[{"Times", "@@", 
+    RowBox[{"MapThread", "[", 
+     RowBox[{"Power", ",", 
+      RowBox[{"{", 
+       RowBox[{"basisVariables", ",", "exponents"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"basisTerm", "[", "r_Rule", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Last", "[", "r", "]"}], " ", 
+    RowBox[{"monomialFromExponents", "[", 
+     RowBox[{"First", "[", "r", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nonzeroCoefficientAssociation", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"monomialFromExponents", "[", 
+         RowBox[{"First", "[", "#", "]"}], "]"}], "->", 
+        RowBox[{"Last", "[", "#", "]"}]}], ")"}], "&"}], "/@", 
+     "coefficientRules"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"basisCoefficients", "=", 
+   RowBox[{"AssociationMap", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Lookup", "[", 
+       RowBox[{"nonzeroCoefficientAssociation", ",", "#", ",", "0"}], "]"}], 
+      "&"}], ",", "fullBasis"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"weightPiece", "[", "w_Integer", "]"}], ":=", 
+   RowBox[{"Total", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"#", " ", 
+        RowBox[{"Lookup", "[", 
+         RowBox[{"basisCoefficients", ",", "#", ",", "0"}], "]"}]}], ")"}], 
+      "&"}], "/@", 
+     RowBox[{"basisByWeight", "[", "w", "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"byWeight", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"0", "->", 
+      RowBox[{"weightPiece", "[", "0", "]"}]}], ",", 
+     RowBox[{"1", "->", 
+      RowBox[{"weightPiece", "[", "1", "]"}]}], ",", 
+     RowBox[{"2", "->", 
+      RowBox[{"weightPiece", "[", "2", "]"}]}]}], "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight0", "=", 
+   RowBox[{"byWeight", "[", "0", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight1", "=", 
+   RowBox[{"byWeight", "[", "1", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"weight2", "=", 
+   RowBox[{"byWeight", "[", "2", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.995015570514349*^9, 3.9950157723191395`*^9}, {
+  3.9950170760805016`*^9, 3.9950170767239647`*^9}, {3.9950208077110863`*^9, 
+  3.9950208108884907`*^9}},ExpressionUUID->"6e8f6849-2e2d-494d-8d16-\
+5646ef8f4db9"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Weight 0", "Subsection",
+ CellChangeTimes->{{3.9950170997225513`*^9, 
+  3.995017104591921*^9}},ExpressionUUID->"d05dbf95-55d8-eb4d-8a91-\
+f67b0622efd8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"norm", " ", "weight0"}], "//", "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"%", "+", 
+   RowBox[{"a", 
+    FractionBox[
+     RowBox[{"(", 
+      RowBox[{"3", " ", "\[Chi]", " ", "\[Chi]b"}], ")"}], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "4"]], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"\[Chi]", " ", "\[Chi]b"}]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["\[Chi]", "2"], "+", 
+         SuperscriptBox["\[Chi]b", "2"], "+", 
+         RowBox[{"8", " ", "\[Chi]", " ", "\[Chi]b"}]}], ")"}]}], "-", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["\[Chi]", "3"], "+", 
+        SuperscriptBox["\[Chi]b", "3"]}], ")"}], "-", 
+      RowBox[{"19", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+       RowBox[{"(", 
+        RowBox[{"\[Chi]", "+", "\[Chi]b"}], ")"}]}]}], ")"}]}]}], "//", 
+  "FullSimplify"}]}], "Input",
+ CellChangeTimes->{{3.99501587662932*^9, 3.995015887027975*^9}, {
+  3.995015995778101*^9, 3.995015996187689*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"705b120b-19ac-ea4f-b34d-af2da8718bdb"],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"48", " ", "n", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "2"}], "+", "\[Chi]b"}], ")"}], " ", 
+         SuperscriptBox["\[Chi]b", "2"]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[Chi]", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}], "+", 
+      RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+       RowBox[{"(", 
+        RowBox[{"16", "+", 
+         RowBox[{"\[Chi]b", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "19"}], "+", 
+            RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[Chi]", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"2", "+", 
+         RowBox[{"\[Chi]b", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "19"}], "+", 
+            RowBox[{"16", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+   RowBox[{
+    SuperscriptBox["\[Pi]", "4"], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "4"]}]]}]], "Output",
+ CellChangeTimes->{{3.9950158781086903`*^9, 3.995015887424938*^9}, 
+   3.9950159970244217`*^9, 3.9950171283659687`*^9},
+ CellLabel->"Out[68]=",ExpressionUUID->"72465681-64a5-674b-92fe-6f2406749bb9"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"3", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "16"}], " ", "n"}], "+", 
+     RowBox[{"a", " ", 
+      SuperscriptBox["\[Pi]", "4"]}]}], ")"}], " ", "\[Chi]", " ", "\[Chi]b", 
+   " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "2"}], "+", "\[Chi]b"}], ")"}], " ", 
+        SuperscriptBox["\[Chi]b", "2"]}], ")"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", 
+        RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}], "+", 
+     RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+      RowBox[{"(", 
+       RowBox[{"16", "+", 
+        RowBox[{"\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "19"}], "+", 
+           RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      RowBox[{"(", 
+       RowBox[{"2", "+", 
+        RowBox[{"\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "19"}], "+", 
+           RowBox[{"16", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+  RowBox[{
+   SuperscriptBox["\[Pi]", "4"], " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "4"]}]]], "Output",
+ CellChangeTimes->{{3.9950158781086903`*^9, 3.995015887424938*^9}, 
+   3.9950159970244217`*^9, 3.995017128506727*^9},
+ CellLabel->"Out[69]=",ExpressionUUID->"f4e6d017-eab1-404e-bcc7-0acbd0bdf854"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Collect", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"16", 
+      FractionBox["n", 
+       SuperscriptBox["\[Pi]", "4"]]}]], "norm", " ", "weight0"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9950199084676533`*^9, 3.995019951324751*^9}},
+ CellLabel->"In[85]:=",ExpressionUUID->"612cae4a-d88d-8c4d-8ee4-9c9e85ddf4c6"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]], 
+  RowBox[{"3", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "2"}], " ", 
+      SuperscriptBox["\[Chi]", "5"]}], "+", 
+     SuperscriptBox["\[Chi]", "6"], "-", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"16", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"35", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"10", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"35", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"40", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     RowBox[{"16", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"10", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     SuperscriptBox["\[Chi]b", "6"], "+", 
+     RowBox[{"2", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{{3.9950199092363815`*^9, 3.995019951900072*^9}},
+ CellLabel->"Out[85]=",ExpressionUUID->"b5c1a5d6-8b31-7f44-9ffa-a8a859dd3897"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "2"}], " ", 
+     SuperscriptBox["\[Chi]", "5"]}], "+", 
+    SuperscriptBox["\[Chi]", "6"], "-", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"16", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"40", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"35", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"40", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"40", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"10", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "+", 
+    RowBox[{"35", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"40", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "-", 
+    RowBox[{"16", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "+", 
+    RowBox[{"10", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "-", 
+    SuperscriptBox["\[Chi]b", "6"], "+", 
+    RowBox[{"2", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "6"]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Chi]"}], "]"}]}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.9950211431536827`*^9, 3.995021168213293*^9}, {
+  3.995021208625044*^9, 3.9950212196814938`*^9}},
+ CellLabel->"In[97]:=",ExpressionUUID->"45b5c40b-612a-ba42-a9ee-b1bd56a1f0a9"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.995021208998535*^9, 3.995021220027792*^9}},
+ CellLabel->"Out[98]=",ExpressionUUID->"e68d2659-5e7a-8f49-abbf-d6a4f7a3762b"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Weight 1", "Subsection",
+ CellChangeTimes->{{3.9950170997225513`*^9, 
+  3.9950171114731483`*^9}},ExpressionUUID->"f546b1ab-0dba-e040-82ff-\
+f10728491e1a"],
+
+Cell["", "Text",ExpressionUUID->"ab6127c8-5528-8047-9e66-954d42fecf5a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Coefficient", "[", 
+   RowBox[{
+    RowBox[{"norm", " ", "weight1"}], ",", "LOneM"}], "]"}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.9950158891353455`*^9, 3.9950158974815445`*^9}, {
+  3.9950160141223583`*^9, 3.9950160220929337`*^9}},
+ CellLabel->"In[70]:=",ExpressionUUID->"31a8f044-a71d-a94c-a97f-44ee7293bd07"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9950158992250576`*^9, 3.9950160225934772`*^9, 
+  3.995017135115885*^9},
+ CellLabel->"Out[70]=",ExpressionUUID->"42e344db-8d40-f34c-87ad-fbebcccb5807"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"16", 
+     FractionBox["n", 
+      SuperscriptBox["\[Pi]", "4"]]}]], 
+   RowBox[{"Coefficient", "[", 
+    RowBox[{
+     RowBox[{"norm", " ", "weight1"}], ",", "LOneP"}], "]"}]}], "//", 
+  "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"%", "-", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"(", 
+        RowBox[{"6", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "\[Chi]"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "\[Chi]b"}], ")"}]}], ")"}]}], "/", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "^", "6"}]}], "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"\[Chi]", " ", "\[Chi]b"}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"\[Chi]", "^", "3"}], "+", 
+          RowBox[{"\[Chi]b", "^", "3"}]}], ")"}]}], "+", 
+       RowBox[{"29", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+        RowBox[{"(", 
+         RowBox[{"\[Chi]", "+", "\[Chi]b"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"\[Chi]", " ", "\[Chi]b"}]}], ")"}]}], "-", 
+       RowBox[{"2", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"11", " ", 
+           RowBox[{"\[Chi]", "^", "2"}]}], "+", 
+          RowBox[{"11", " ", 
+           RowBox[{"\[Chi]b", "^", "2"}]}], "+", 
+          RowBox[{"38", " ", "\[Chi]", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}],
+     ")"}]}], "//", "FullSimplify"}]}], "Input",
+ CellChangeTimes->{{3.9950160315192966`*^9, 3.9950160577875385`*^9}, {
+  3.995016091600857*^9, 3.995016106796831*^9}, {3.9950163697151833`*^9, 
+  3.995016371578306*^9}, {3.9950171507638397`*^9, 3.9950171580670414`*^9}},
+ CellLabel->"In[72]:=",ExpressionUUID->"5a2ac342-c7a5-754c-989c-143e5a5bbc7d"],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"6", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], " ", "\[Chi]", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], " ", "\[Chi]b", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "+", 
+      SuperscriptBox["\[Chi]b", "3"], "+", 
+      RowBox[{"\[Chi]", " ", 
+       SuperscriptBox["\[Chi]b", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"29", "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "22"}], "+", "\[Chi]b"}], ")"}], " ", "\[Chi]b"}]}], 
+        ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[Chi]", "2"], " ", "\[Chi]b", " ", 
+       RowBox[{"(", 
+        RowBox[{"29", "+", 
+         RowBox[{"\[Chi]b", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "76"}], "+", 
+            RowBox[{"29", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[Chi]", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"\[Chi]b", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "22"}], "+", 
+            RowBox[{"29", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "6"]]}]], "Output",
+ CellChangeTimes->{{3.995016032932356*^9, 3.995016058601881*^9}, 
+   3.9950161078408737`*^9, 3.9950163727646427`*^9, {3.9950171388436737`*^9, 
+   3.9950171585906105`*^9}},
+ CellLabel->"Out[72]=",ExpressionUUID->"33921d86-a056-6942-8c9f-1bfec85280ee"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.995016032932356*^9, 3.995016058601881*^9}, 
+   3.9950161078408737`*^9, 3.9950163727646427`*^9, {3.9950171388436737`*^9, 
+   3.995017158592636*^9}},
+ CellLabel->"Out[73]=",ExpressionUUID->"1edf48a9-1d71-c04f-b06d-2af338efcd71"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Collect", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"16", 
+      FractionBox["n", 
+       SuperscriptBox["\[Pi]", "4"]]}]], 
+    RowBox[{"Coefficient", "[", 
+     RowBox[{
+      RowBox[{"norm", " ", "weight1"}], ",", "LOneP"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.99502002204047*^9, 3.9950200331814785`*^9}},
+ CellLabel->"In[86]:=",ExpressionUUID->"9d02caaa-b05e-d547-9fd4-77e672c37b93"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]], 
+  RowBox[{"3", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "2"}], " ", 
+      SuperscriptBox["\[Chi]", "4"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "5"]}], "-", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"102", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"164", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"264", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"102", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"56", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "-", 
+     RowBox[{"164", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"164", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "-", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"102", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"264", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"164", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"48", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     RowBox[{"102", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     RowBox[{"2", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "6"]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.9950200339979095`*^9},
+ CellLabel->"Out[86]=",ExpressionUUID->"a3b5b3f0-0b08-a045-8cf0-b6186f7a2b8b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "2"}], " ", 
+     SuperscriptBox["\[Chi]", "4"]}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "5"]}], "-", 
+    RowBox[{"56", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"102", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "-", 
+    RowBox[{"48", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"164", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"264", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"102", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "6"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"56", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "-", 
+    RowBox[{"164", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"164", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "-", 
+    RowBox[{"56", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"102", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "+", 
+    RowBox[{"264", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"164", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "+", 
+    RowBox[{"48", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "-", 
+    RowBox[{"102", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "+", 
+    RowBox[{"56", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "-", 
+    RowBox[{"2", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "6"]}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "6"]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Chi]"}], "]"}]}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.995021304784561*^9, 3.9950213111780415`*^9}},
+ CellLabel->
+  "In[105]:=",ExpressionUUID->"b61bd995-699f-1749-9657-ecf3a933dd71"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.995021306699404*^9, 3.995021311554184*^9}},
+ CellLabel->
+  "Out[106]=",ExpressionUUID->"a5f32aaa-ac28-a142-a527-27d18e6fa7d6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"16", 
+     FractionBox["n", 
+      SuperscriptBox["\[Pi]", "4"]]}]], 
+   RowBox[{"Coefficient", "[", 
+    RowBox[{
+     RowBox[{"norm", " ", "weight1"}], ",", "LChiM"}], "]"}]}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.995017169106161*^9, 3.9950171721911945`*^9}},
+ CellLabel->"In[74]:=",ExpressionUUID->"a160fdaf-bb53-4b46-a05e-5d4d1471e3d2"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.995017173093693*^9},
+ CellLabel->"Out[74]=",ExpressionUUID->"1918584b-0b6d-4249-8341-821b866d15c1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"16", 
+     FractionBox["n", 
+      SuperscriptBox["\[Pi]", "4"]]}]], 
+   RowBox[{"Coefficient", "[", 
+    RowBox[{
+     RowBox[{"norm", " ", "weight1"}], ",", "LChiP"}], "]"}]}], "//", 
+  "FullSimplify"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"%", "-", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"6", " ", 
+        RowBox[{"\[Chi]", "^", "2"}], " ", 
+        RowBox[{"\[Chi]b", "^", "2"}]}], ")"}], "/", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "^", "6"}]}], "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"12", "+", 
+          RowBox[{"\[Chi]", " ", "\[Chi]b"}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"\[Chi]", "^", "3"}], "+", 
+          RowBox[{"\[Chi]b", "^", "3"}]}], ")"}]}], "-", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"\[Chi]", "^", "4"}], "+", 
+         RowBox[{"\[Chi]b", "^", "4"}]}], ")"}], "-", 
+       RowBox[{"4", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"\[Chi]", "^", "2"}], "+", 
+          RowBox[{"\[Chi]b", "^", "2"}]}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"3", "+", 
+          RowBox[{"10", " ", "\[Chi]", " ", "\[Chi]b"}]}], ")"}]}], "+", 
+       RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+        RowBox[{"(", 
+         RowBox[{"\[Chi]", "+", "\[Chi]b"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"78", "+", 
+          RowBox[{"29", " ", "\[Chi]", " ", "\[Chi]b"}]}], ")"}]}], "-", 
+       RowBox[{"2", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+        RowBox[{"(", 
+         RowBox[{"18", "+", 
+          RowBox[{"49", " ", "\[Chi]", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}],
+     ")"}]}], "//", "FullSimplify"}]}], "Input",
+ CellChangeTimes->{{3.9950171764696655`*^9, 3.9950171917080326`*^9}},
+ CellLabel->"In[76]:=",ExpressionUUID->"593c11d6-bd49-624f-8cae-edbfb7ea8ae5"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"6", " ", 
+   SuperscriptBox["\[Chi]", "2"], " ", 
+   SuperscriptBox["\[Chi]b", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}]}], "-", 
+     RowBox[{
+      SuperscriptBox["\[Chi]b", "2"], " ", 
+      RowBox[{"(", 
+       RowBox[{"12", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "12"}], "+", "\[Chi]b"}], ")"}], " ", "\[Chi]b"}]}], 
+       ")"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      RowBox[{"(", 
+       RowBox[{"12", "+", 
+        RowBox[{"\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "40"}], "+", 
+           RowBox[{"29", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}], "+", 
+     RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "36"}], "+", 
+        RowBox[{"\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{"78", "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "40"}], "+", "\[Chi]b"}], ")"}], " ", 
+            "\[Chi]b"}]}], ")"}]}]}], ")"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "12"}], "+", 
+        RowBox[{"\[Chi]b", " ", 
+         RowBox[{"(", 
+          RowBox[{"78", "+", 
+           RowBox[{"\[Chi]b", " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "98"}], "+", 
+              RowBox[{"29", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}]}], 
+       ")"}]}]}], ")"}]}], 
+  SuperscriptBox[
+   RowBox[{"(", 
+    RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "6"]]], "Output",
+ CellChangeTimes->{{3.9950171791925144`*^9, 3.995017192150667*^9}},
+ CellLabel->"Out[76]=",ExpressionUUID->"1c5c8a1b-0334-a240-bbde-926aa2b80b42"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.9950171791925144`*^9, 3.995017192150667*^9}},
+ CellLabel->"Out[77]=",ExpressionUUID->"4a865391-cb54-4c43-ad54-ec2f8f84205c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Collect", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"16", 
+      FractionBox["n", 
+       SuperscriptBox["\[Pi]", "4"]]}]], 
+    RowBox[{"Coefficient", "[", 
+     RowBox[{
+      RowBox[{"norm", " ", "weight1"}], ",", "LChiP"}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{3.9950200835225945`*^9},
+ CellLabel->"In[87]:=",ExpressionUUID->"a4148938-d694-954a-bded-ee2ff55c2e3d"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]], 
+  RowBox[{"3", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "24"}], " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"132", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"78", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "6"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"48", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "-", 
+     RowBox[{"116", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"24", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"132", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"116", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"24", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"78", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     RowBox[{"56", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"2", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "6"]}], "-", 
+     RowBox[{"2", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "6"]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.9950200840978107`*^9},
+ CellLabel->"Out[87]=",ExpressionUUID->"06b3acb1-81f4-4642-a326-edba6fc7ec7a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "24"}], " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"24", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "6"], " ", "\[Chi]b"}], "-", 
+    RowBox[{"48", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"132", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"78", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "6"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"48", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "-", 
+    RowBox[{"116", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"56", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"24", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"132", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "+", 
+    RowBox[{"116", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"24", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "+", 
+    RowBox[{"78", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "-", 
+    RowBox[{"56", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "+", 
+    RowBox[{"2", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "6"]}], "-", 
+    RowBox[{"2", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "6"]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "+", 
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Chi]"}], "]"}]}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{3.9950213302376823`*^9},
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"dff355ca-2723-bc4a-8b10-d60329097763"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9950213325118504`*^9},
+ CellLabel->
+  "Out[108]=",ExpressionUUID->"e3f154e6-bc5c-ef4c-9937-31ab991ca068"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Weight 2", "Subsection",
+ CellChangeTimes->{{3.9950170997225513`*^9, 
+  3.9950171192334824`*^9}},ExpressionUUID->"8b4c859d-0510-4147-8f4b-\
+f6d6329bd999"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{"16", 
+     FractionBox["n", 
+      SuperscriptBox["\[Pi]", "4"]]}]], "norm", " ", "weight2"}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.9950159014402885`*^9, 3.9950159087766113`*^9}, {
+   3.9950161705107517`*^9, 3.995016171914242*^9}, {3.995016243985878*^9, 
+   3.9950162892030773`*^9}, 3.9950163653911915`*^9, {3.9950173255960655`*^9, 
+   3.995017325774679*^9}},
+ CellLabel->"In[80]:=",ExpressionUUID->"c9a716bd-b8ea-0544-bcd4-10d0c923ed92"],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"36", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", " ", "Li2M"}], "+", 
+      RowBox[{"LChiP", " ", "LOneM"}]}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "\[Chi]"}], ")"}], " ", 
+    SuperscriptBox["\[Chi]", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "\[Chi]b"}], ")"}], " ", 
+    SuperscriptBox["\[Chi]b", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "2"}], "+", "\[Chi]b"}], ")"}], " ", 
+         SuperscriptBox["\[Chi]b", "2"]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[Chi]", "3"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[Chi]", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{"2", "-", 
+         RowBox[{"9", " ", "\[Chi]b"}], "+", 
+         RowBox[{"6", " ", 
+          SuperscriptBox["\[Chi]b", "2"]}]}], ")"}]}], "+", 
+      RowBox[{"\[Chi]", " ", "\[Chi]b", " ", 
+       RowBox[{"(", 
+        RowBox[{"6", "+", 
+         RowBox[{"\[Chi]b", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "9"}], "+", 
+            RowBox[{"2", " ", "\[Chi]b"}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]]}]], "Output",
+ CellChangeTimes->{
+  3.9950159094755516`*^9, 3.9950161731037865`*^9, {3.995016255059021*^9, 
+   3.9950162659489517`*^9}, 3.9950172321028175`*^9, 3.9950173262022724`*^9},
+ CellLabel->"Out[80]=",ExpressionUUID->"3dd71cda-86e8-884c-adc1-6ff18ae97566"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Collect", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"16", 
+      FractionBox["n", 
+       SuperscriptBox["\[Pi]", "4"]]}]], 
+    RowBox[{"Coefficient", "[", 
+     RowBox[{
+      RowBox[{"norm", " ", "weight2"}], ",", 
+      RowBox[{"LChiP", " ", "LOneM"}]}], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.995020218347269*^9, 3.9950202774198*^9}},
+ CellLabel->"In[89]:=",ExpressionUUID->"7877f421-373c-b44c-b5c8-dcbe9ad6fa78"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"\[Chi]", "-", "\[Chi]b"}], ")"}], "7"]], 
+  RowBox[{"3", " ", "\[Chi]", " ", "\[Chi]b", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "24"}], " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b"}], "+", 
+     RowBox[{"36", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"12", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+     RowBox[{"72", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"168", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "+", 
+     RowBox[{"36", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "2"]}], "-", 
+     RowBox[{"24", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "-", 
+     RowBox[{"360", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "5"], " ", 
+      SuperscriptBox["\[Chi]b", "3"]}], "+", 
+     RowBox[{"36", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"168", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "+", 
+     RowBox[{"204", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"72", " ", 
+      SuperscriptBox["\[Chi]", "4"], " ", 
+      SuperscriptBox["\[Chi]b", "4"]}], "-", 
+     RowBox[{"12", " ", "\[Chi]", " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "+", 
+     RowBox[{"36", " ", 
+      SuperscriptBox["\[Chi]", "2"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}], "-", 
+     RowBox[{"24", " ", 
+      SuperscriptBox["\[Chi]", "3"], " ", 
+      SuperscriptBox["\[Chi]b", "5"]}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{{3.9950202512398376`*^9, 3.995020278015335*^9}},
+ CellLabel->"Out[89]=",ExpressionUUID->"1b1e11ab-d1e4-1649-98ef-88fab10461bf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]_", ",", "\[Chi]b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "24"}], " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", "\[Chi]b"}], "+", 
+    RowBox[{"36", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", "\[Chi]b"}], "-", 
+    RowBox[{"12", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", "\[Chi]b"}], "-", 
+    RowBox[{"72", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"204", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"168", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "+", 
+    RowBox[{"36", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "2"]}], "-", 
+    RowBox[{"24", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"204", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "-", 
+    RowBox[{"360", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"204", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "-", 
+    RowBox[{"24", " ", 
+     SuperscriptBox["\[Chi]", "5"], " ", 
+     SuperscriptBox["\[Chi]b", "3"]}], "+", 
+    RowBox[{"36", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"168", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "+", 
+    RowBox[{"204", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"72", " ", 
+     SuperscriptBox["\[Chi]", "4"], " ", 
+     SuperscriptBox["\[Chi]b", "4"]}], "-", 
+    RowBox[{"12", " ", "\[Chi]", " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "+", 
+    RowBox[{"36", " ", 
+     SuperscriptBox["\[Chi]", "2"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}], "-", 
+    RowBox[{"24", " ", 
+     SuperscriptBox["\[Chi]", "3"], " ", 
+     SuperscriptBox["\[Chi]b", "5"]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]", ",", "\[Chi]b"}], "]"}], "-", 
+   RowBox[{"x", "[", 
+    RowBox[{"\[Chi]b", ",", "\[Chi]"}], "]"}]}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.995021261519335*^9, 3.9950212651711082`*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"88fb4a92-d4d1-8241-9445-b83914e852f6"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.995021262764143*^9, 3.9950212655579453`*^9}},
+ CellLabel->
+  "Out[102]=",ExpressionUUID->"e2b5dfc0-d7f9-4045-b976-85207b4503a7"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{478, 525.5},
+WindowMargins->{{-4.5, Automatic}, {Automatic, 0}},
+Magnification:>0.8 Inherited,
+FrontEndVersion->"14.3 for Microsoft Windows (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3dbbe2b4-19e4-5f45-b092-f13a8a052f6a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 244, 6, 52, "Section",ExpressionUUID->"85995b83-2669-cd48-a317-70da77a61397"],
+Cell[823, 30, 5754, 174, 223, "Input",ExpressionUUID->"99a78c1c-e535-ce40-b585-35542792a939"],
+Cell[CellGroupData[{
+Cell[6602, 208, 675, 15, 68, "Input",ExpressionUUID->"e5d4e6d5-098b-7c42-94b1-71a21c519a82"],
+Cell[7280, 225, 249, 3, 25, "Output",ExpressionUUID->"8b5b7a51-2a69-354c-8941-86e312121aab"],
+Cell[7532, 230, 249, 3, 25, "Output",ExpressionUUID->"67717926-8ed3-e64b-b598-ea5a396a3c07"],
+Cell[7784, 235, 249, 3, 25, "Output",ExpressionUUID->"49ac5bc9-0379-5e40-b940-ca1e1d524f03"],
+Cell[8036, 240, 249, 3, 25, "Output",ExpressionUUID->"867820f8-3432-f54f-a56f-ca2bd3e12021"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8334, 249, 167, 3, 42, "Section",ExpressionUUID->"539ed638-fa34-b540-b36b-b5c3b5be3520"],
+Cell[8504, 254, 1137, 34, 40, "Input",ExpressionUUID->"15b21264-d147-aa45-8d35-ae173aa4b574"],
+Cell[CellGroupData[{
+Cell[9666, 292, 307, 6, 22, "Input",ExpressionUUID->"279d4de9-3c32-414f-91d4-84e73a259a5c"],
+Cell[9976, 300, 1143, 33, 50, "Output",ExpressionUUID->"0746d826-ebe3-4744-af9e-e2bbd97251da"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11168, 339, 166, 3, 42, "Section",ExpressionUUID->"78affa55-d702-9b4f-9dde-c068558cf874"],
+Cell[11337, 344, 5148, 149, 165, "Input",ExpressionUUID->"1bf99b8e-d2a7-6b42-aff6-97fb5288209d"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[16522, 498, 168, 3, 42, "Section",ExpressionUUID->"4f8440ec-5025-3045-ba63-bc7866ad61e7"],
+Cell[CellGroupData[{
+Cell[16715, 505, 828, 22, 37, "Input",ExpressionUUID->"6202417e-7f2a-6b45-a885-b5cc936d36c1"],
+Cell[17546, 529, 1656, 53, 39, "Output",ExpressionUUID->"b3c24bc9-266c-0642-93e7-e0e95950abe5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19239, 587, 660, 15, 22, "Input",ExpressionUUID->"19612529-de6c-4644-8111-31fa683b51eb"],
+Cell[19902, 604, 225, 3, 25, "Output",ExpressionUUID->"bed2cf25-7d8a-d14d-93e9-f58a3c96f78b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20164, 612, 609, 14, 22, "Input",ExpressionUUID->"6e28900f-16dd-ec40-9ea5-397553166584"],
+Cell[20776, 628, 173, 2, 25, "Output",ExpressionUUID->"27c1b947-060a-9040-ac50-62531096cd0a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20986, 635, 771, 16, 22, "Input",ExpressionUUID->"3a0a128a-413f-764a-a6ea-882afc7d7168"],
+Cell[21760, 653, 273, 4, 25, "Output",ExpressionUUID->"a02f31e1-97b3-c84d-a3cf-2a62dd4c10a8"]
+}, Open  ]],
+Cell[22048, 660, 956, 18, 22, "Input",ExpressionUUID->"9bfe2677-af94-3741-8752-381c80f7a316"],
+Cell[CellGroupData[{
+Cell[23029, 682, 384, 8, 35, "Input",ExpressionUUID->"a0fc7e4e-c32d-a34f-8040-0be9113fc242"],
+Cell[23416, 692, 786, 23, 50, "Output",ExpressionUUID->"fe27ed4d-8a70-4a40-8c4a-936479f63592"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24239, 720, 2049, 49, 99, "Input",ExpressionUUID->"193deffe-7e95-a541-9567-3c33a5a8edc3"],
+Cell[26291, 771, 577, 8, 25, "Output",ExpressionUUID->"79f260bb-f9f0-4b42-bb6f-b4ebcb0832bf"],
+Cell[26871, 781, 1102, 26, 48, "Output",ExpressionUUID->"de0779fa-7713-cc48-a58b-df332857f97a"],
+Cell[27976, 809, 1023, 24, 48, "Output",ExpressionUUID->"16c76cc0-cb9f-7343-b160-fe49bce307a5"],
+Cell[29002, 835, 575, 8, 25, "Output",ExpressionUUID->"4f5ff05b-d34f-8942-9fe1-bed1bbeefe9f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29614, 848, 2097, 49, 99, "Input",ExpressionUUID->"73c9d049-6195-6a49-9b0b-40e612e3b46a"],
+Cell[31714, 899, 611, 8, 25, "Output",ExpressionUUID->"4dc2d6f3-9c64-ce4b-bea5-438f7771e0fe"],
+Cell[32328, 909, 611, 8, 25, "Output",ExpressionUUID->"e729597d-c51e-de40-8015-c94e621230cd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32976, 922, 379, 7, 22, "Input",ExpressionUUID->"791e1dda-db65-7e44-8d46-34d14904ea5c"],
+Cell[33358, 931, 33847, 927, 612, "Output",ExpressionUUID->"2aa743d2-940e-884a-a115-fea361e25361"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[67254, 1864, 178, 3, 42, "Section",ExpressionUUID->"2216a499-0891-cd49-829e-b77a540627a7"],
+Cell[67435, 1869, 505, 13, 166, "Text",ExpressionUUID->"4d66b46d-2186-024a-8275-d4af72202f03"],
+Cell[CellGroupData[{
+Cell[67965, 1886, 159, 3, 42, "Subsection",ExpressionUUID->"9e767ebc-c289-af40-b04e-d64ecf454208"],
+Cell[68127, 1891, 8076, 233, 454, "Input",ExpressionUUID->"6e8f6849-2e2d-494d-8d16-5646ef8f4db9"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[76240, 2129, 158, 3, 30, "Subsection",ExpressionUUID->"d05dbf95-55d8-eb4d-8a91-f67b0622efd8"],
+Cell[CellGroupData[{
+Cell[76423, 2136, 1230, 33, 55, "Input",ExpressionUUID->"705b120b-19ac-ea4f-b34d-af2da8718bdb"],
+Cell[77656, 2171, 1494, 43, 44, "Output",ExpressionUUID->"72465681-64a5-674b-92fe-6f2406749bb9"],
+Cell[79153, 2216, 1595, 49, 44, "Output",ExpressionUUID->"f4e6d017-eab1-404e-bcc7-0acbd0bdf854"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80785, 2270, 431, 11, 42, "Input",ExpressionUUID->"612cae4a-d88d-8c4d-8ee4-9c9e85ddf4c6"],
+Cell[81219, 2283, 2055, 53, 59, "Output",ExpressionUUID->"b5c1a5d6-8b31-7f44-9ffa-a8a859dd3897"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83311, 2341, 2179, 57, 53, "Input",ExpressionUUID->"45b5c40b-612a-ba42-a9ee-b1bd56a1f0a9"],
+Cell[85493, 2400, 173, 2, 25, "Output",ExpressionUUID->"e68d2659-5e7a-8f49-abbf-d6a4f7a3762b"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[85715, 2408, 160, 3, 30, "Subsection",ExpressionUUID->"f546b1ab-0dba-e040-82ff-f10728491e1a"],
+Cell[85878, 2413, 71, 0, 27, "Text",ExpressionUUID->"ab6127c8-5528-8047-9e66-954d42fecf5a"],
+Cell[CellGroupData[{
+Cell[85974, 2417, 366, 8, 22, "Input",ExpressionUUID->"31a8f044-a71d-a94c-a97f-44ee7293bd07"],
+Cell[86343, 2427, 200, 3, 25, "Output",ExpressionUUID->"42e344db-8d40-f34c-87ad-fbebcccb5807"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[86580, 2435, 1983, 54, 90, "Input",ExpressionUUID->"5a2ac342-c7a5-754c-989c-143e5a5bbc7d"],
+Cell[88566, 2491, 1685, 48, 77, "Output",ExpressionUUID->"33921d86-a056-6942-8c9f-1bfec85280ee"],
+Cell[90254, 2541, 277, 4, 25, "Output",ExpressionUUID->"1edf48a9-1d71-c04f-b06d-2af338efcd71"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[90568, 2550, 517, 14, 42, "Input",ExpressionUUID->"9d02caaa-b05e-d547-9fd4-77e672c37b93"],
+Cell[91088, 2566, 2721, 71, 107, "Output",ExpressionUUID->"a3b5b3f0-0b08-a045-8cf0-b6186f7a2b8b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[93846, 2642, 2804, 75, 98, "Input",ExpressionUUID->"b61bd995-699f-1749-9657-ecf3a933dd71"],
+Cell[96653, 2719, 177, 3, 25, "Output",ExpressionUUID->"a5f32aaa-ac28-a142-a527-27d18e6fa7d6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[96867, 2727, 431, 12, 42, "Input",ExpressionUUID->"a160fdaf-bb53-4b46-a05e-5d4d1471e3d2"],
+Cell[97301, 2741, 149, 2, 25, "Output",ExpressionUUID->"1918584b-0b6d-4249-8341-821b866d15c1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[97487, 2748, 1998, 57, 121, "Input",ExpressionUUID->"593c11d6-bd49-624f-8cae-edbfb7ea8ae5"],
+Cell[99488, 2807, 1939, 60, 75, "Output",ExpressionUUID->"1c5c8a1b-0334-a240-bbde-926aa2b80b42"],
+Cell[101430, 2869, 175, 2, 25, "Output",ExpressionUUID->"4a865391-cb54-4c43-ad54-ec2f8f84205c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[101642, 2876, 494, 14, 42, "Input",ExpressionUUID->"a4148938-d694-954a-bded-ee2ff55c2e3d"],
+Cell[102139, 2892, 2265, 59, 92, "Output",ExpressionUUID->"06b3acb1-81f4-4642-a326-edba6fc7ec7a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[104441, 2956, 2336, 63, 83, "Input",ExpressionUUID->"dff355ca-2723-bc4a-8b10-d60329097763"],
+Cell[106780, 3021, 155, 3, 25, "Output",ExpressionUUID->"e3f154e6-bc5c-ef4c-9937-31ab991ca068"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[106984, 3030, 160, 3, 42, "Subsection",ExpressionUUID->"8b4c859d-0510-4147-8f4b-f6d6329bd999"],
+Cell[CellGroupData[{
+Cell[107169, 3037, 529, 12, 42, "Input",ExpressionUUID->"c9a716bd-b8ea-0544-bcd4-10d0c923ed92"],
+Cell[107701, 3051, 1777, 52, 77, "Output",ExpressionUUID->"3dd71cda-86e8-884c-adc1-6ff18ae97566"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[109515, 3108, 545, 15, 42, "Input",ExpressionUUID->"7877f421-373c-b44c-b5c8-dcbe9ad6fa78"],
+Cell[110063, 3125, 2410, 62, 107, "Output",ExpressionUUID->"1b1e11ab-d1e4-1649-98ef-88fab10461bf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[112510, 3192, 2478, 66, 83, "Input",ExpressionUUID->"88fb4a92-d4d1-8241-9445-b83914e852f6"],
+Cell[114991, 3260, 179, 3, 25, "Output",ExpressionUUID->"e2b5dfc0-d7f9-4045-b976-85207b4503a7"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
